@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Tahsin</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- ScrollReveal for animations -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            scroll-behavior: smooth;
+            transition: background-image 0.3s ease;
+            color: white;
+        }
+
+        /* Custom background classes */
+        body.custom-bg-1 {
+            background-image: url('download.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        body.custom-bg-2 {
+            background-image: url('1.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Semi-transparent overlay for better readability */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        section {
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Reduce the vertical height of the PERSONAL (About) section */
+        #about {
+            min-height: 70vh;
+            position: relative;
+        }
+
+        #contact-link {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(31, 41, 55, 0.8);
+            /* Semi-transparent dark background */
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #contact-link a {
+            color: #FBBF24;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #contact-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body class="custom-bg-1">
+    <!-- Header Section ("ME? HUH! HOW?") -->
+    <header>
+        <h2 class="text-4xl font-bold mb-4">ME? HUH! HOW?</h2>
+        <p class="text-lg max-w-lg">READ BELOW TO KNOW</p>
+    </header>
+
+    <!-- PERSONAL (About) Section -->
+    <section id="about">
+        <h2 class="text-3xl font-bold mb-4">PERSONAL</h2>
+        <p class="text-lg">
+            I was born stubborn, as the third and youngest child of my parents. Named Tahsin Hasan, there's a humorous
+            story about my Akika—my parents aren’t quite sure if they did it or not! I have two older brothers I'm not
+            very close with, a mother who teaches at a college, and a father who's a businessman. I'm exploring
+            programming
+            languages like Python, C, and C++, with a keen focus on cybersecurity, ethical hacking, and network
+            security.
+        </p>
+        <!-- Contact Link Section -->
+        <div id="contact-link">
+            <a href="contact.htm">Contact Me</a>
+        </div>
+    </section>
+
+    <script>
+        const options = { threshold: [0.33] }; // One-third visibility threshold
+        const aboutSection = document.getElementById('about');
+        const bodyEl = document.body;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.target === aboutSection && entry.intersectionRatio > 0.33) {
+                    bodyEl.classList.add('custom-bg-2');
+                    bodyEl.classList.remove('custom-bg-1');
+                } else {
+                    bodyEl.classList.add('custom-bg-1');
+                    bodyEl.classList.remove('custom-bg-2');
+                }
+            });
+        }, options);
+
+        observer.observe(aboutSection);
+    </script>
+
+    <!-- ScrollReveal Animation: Re-animates every section on each scroll (both down and up) -->
+    <script>
+        ScrollReveal().reveal('header, section, #contact-link', {
+            duration: 1000,
+            origin: 'bottom',
+            distance: '10px',
+            reset: true
+        });
+    </script>
+    <!-- BELOW DOWN CODE FOR MOVING ONE PAGE TO ANOTHER -->
+    <script>
+        // Handle "Next" button behavior to redirect to last visited page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Store the last visited page
+            sessionStorage.setItem('lastVisitedPage', window.location.href);
+
+            // Redirect to last visited page when "Next" button is used
+            window.addEventListener('pageshow', (event) => {
+                const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+                if (event.persisted && lastVisitedPage && lastVisitedPage !== window.location.href) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        });
+    </script>
+    <script>
+        function handleHomePage() {
+            // Set the homepage as the "starting point" in history
+            history.replaceState(null, null, 'index.htm');
+
+            // Redirect to last visited subpage when "Next" is pressed
+            const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted && lastVisitedPage) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        }
+
+        // Call the function
+        handleHomePage();
+    </script>
+</body>
+
+</html>

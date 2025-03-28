@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought Flashback</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* 
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #00224D 0%, #1A3C6C 100%);
+            color: #E6E6FA;
+            line-height: 1.6;
+        } */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('n.jpg');
+            background-size: cover;
+            /* Ensures the image covers the entire background */
+            background-position: center;
+            /* Centers the background image */
+            background-repeat: no-repeat;
+            /* Prevents tiling of the image */
+            color: #E6E6FA;
+            line-height: 1.6;
+        }
+
+        /* Continuous section transitions */
+        .section {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition:
+                opacity 0.8s ease-out,
+                transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .section.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Top Section */
+        .top-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .top-section h1 {
+            font-size: 4rem;
+            color: #FFD700;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .top-section .brief {
+            max-width: 600px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #D3D3D3;
+        }
+
+        /* Middle Section */
+        .middle-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            min-height: 80vh;
+            padding: 2rem;
+        }
+
+        .middle-section .left {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #E6E6FA;
+        }
+
+        .middle-section .right img {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Description Sections */
+        .description-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .description-section p {
+            max-width: 800px;
+            font-size: 1.2rem;
+        }
+
+        /* Big Words Section */
+        .big-words-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+            gap: 2rem;
+        }
+
+        .big-words-section span {
+            font-size: 5rem;
+            font-weight: bold;
+            color: #FFD700;
+            opacity: 0.7;
+            transition: opacity 0.5s ease;
+        }
+
+        .big-words-section span:hover {
+            opacity: 1;
+        }
+
+        /* Side by Side Sections */
+        .side-by-side-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            min-height: 60vh;
+            padding: 2rem;
+        }
+
+        .container {
+            background-color: rgba(30, 30, 30, 0.4);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            max-width: 400px;
+            transition: transform 0.5s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        .container .title {
+            color: #FFD700;
+            margin-bottom: 1rem;
+        }
+
+        /* Recent Talk Section */
+        .recent-talk-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 70vh;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .recent-talk-container .title {
+            font-size: 3rem;
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+        }
+
+        .recent-talk-container .description {
+            max-width: 800px;
+            font-size: 1.2rem;
+            background-color: rgba(30, 30, 30, 0.4);
+            padding: 2rem;
+            border-radius: 15px;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        #contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 30vh;
+        }
+
+        #contact-button {
+            background-color: #FFD700;
+            color: #00224D;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #contact-button:hover {
+            background-color: #FFC200;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Section -->
+    <div class="top-section section">
+        <h1>THOUGHT</h1>
+        <p class="brief">
+            A contemplative journey through moments that shape our understanding,
+            revealing the profound layers of personal experience and reflection.
+        </p>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="middle-section section">
+        <div class="left">FLASHBACK</div>
+        <div class="right">
+            <img src="/api/placeholder/400/300" alt="Flashback Image">
+        </div>
+    </div>
+
+    <!-- Description Section -->
+    <div class="description-section section">
+        <p>
+            In the quiet moments of reflection, we uncover the subtle threads
+            that weave our personal narratives. Each memory is a prism,
+            refracting light into unexpected patterns of understanding.
+        </p>
+    </div>
+
+    <!-- Big Words Section -->
+    <div class="big-words-section section">
+        <span>HOPE</span>
+        <span>FAITH</span>
+    </div>
+
+    <!-- First Side by Side Section -->
+    <div class="side-by-side-section section">
+        <div class="container">
+            <h2 class="title">REFLECTION</h2>
+            <p>Exploring the depths of personal experience,
+                where memories intersect with present understanding.</p>
+        </div>
+        <div class="container">
+            <h2 class="title">INSIGHT</h2>
+            <p>Discovering the nuanced perspectives
+                that emerge from moments of introspection.</p>
+        </div>
+    </div>
+
+    <!-- Second Side by Side Section -->
+    <div class="side-by-side-section section">
+        <div class="container">
+            <h2 class="title">JOURNEY</h2>
+            <p>Tracing the path of personal growth,
+                where each step reveals new landscapes of thought.</p>
+        </div>
+        <div class="container">
+            <h2 class="title">CONNECTION</h2>
+            <p>Bridging moments of solitude with universal human experiences
+                that transcend individual narratives.</p>
+        </div>
+    </div>
+
+    <!-- Recent Talk Section -->
+    <div class="recent-talk-container section">
+        <h1 class="title">Recent Talk</h1>
+        <div class="description">
+            In the tapestry of our ongoing dialogue, recent conversations
+            have woven intricate threads of insight and understanding.
+            These exchanges illuminate the dynamic nature of thought,
+            revealing how perspectives evolve through meaningful interaction.
+            Each dialogue becomes a mirror, reflecting the depth of our
+            collective wisdom and the continuous journey of learning.
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact-section" class="section">
+        <a id="contact-button" href="#">Explore More</a>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const handleIntersection = (entries) => {
+                entries.forEach(entry => {
+                    // Always toggle active class based on intersection
+                    entry.target.classList.toggle('active', entry.isIntersecting);
+                });
+            };
+
+            const observer = new IntersectionObserver(handleIntersection, observerOptions);
+
+            // Observe all sections
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // Continuous scroll-based transitions
+            window.addEventListener('scroll', () => {
+                sections.forEach(section => {
+                    const rect = section.getBoundingClientRect();
+                    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+                    // Check if section is in viewport
+                    const isVisible =
+                        rect.top <= windowHeight * 0.8 &&
+                        rect.bottom >= windowHeight * 0.2;
+
+                    // Toggle active class based on visibility
+                    section.classList.toggle('active', isVisible);
+                });
+            });
+        });
+    </script>
+    <!-- BELOW DOWN CODE FOR MOVING ONE PAGE TO ANOTHER -->
+    <script>
+        // Handle "Next" button behavior to redirect to last visited page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Store the last visited page
+            sessionStorage.setItem('lastVisitedPage', window.location.href);
+
+            // Redirect to last visited page when "Next" button is used
+            window.addEventListener('pageshow', (event) => {
+                const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+                if (event.persisted && lastVisitedPage && lastVisitedPage !== window.location.href) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        });
+    </script>
+    <script>
+        function handleHomePage() {
+            // Set the homepage as the "starting point" in history
+            history.replaceState(null, null, 'index.htm');
+
+            // Redirect to last visited subpage when "Next" is pressed
+            const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted && lastVisitedPage) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        }
+
+        // Call the function
+        handleHomePage();
+    </script>
+</body>
+
+</html>

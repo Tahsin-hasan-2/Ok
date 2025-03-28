@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahsin Hasan</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- ScrollReveal for animations -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+
+        /* Contact Link Styling */
+        #contact-link {
+            margin-top: 20px;
+            background-color: rgba(31, 41, 55, 0.8);
+            /* Semi-transparent dark background */
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        #contact-link a {
+            color: #FBBF24;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        #contact-link a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #1F2937;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+    <!-- Header: Name and Motto -->
+    <header class="min-h-[70vh] flex flex-col justify-center items-center text-center p-10">
+        <h1 class="text-5xl font-bold mb-4">MD TAHSIN HASAN</h1>
+        <p class="text-xl">Passionate About What's Next</p>
+    </header>
+
+    <!-- About Me Section -->
+    <section id="about" class="min-h-screen p-10 flex flex-col justify-center">
+        <h2 class="text-3xl font-bold mb-4 text-center">About Me</h2>
+        <div class="flex flex-col md:flex-row items-center">
+            <!-- Left Column: Description -->
+            <div class="md:w-1/2 pr-4 description">
+                <p class="text-lg">
+                    I am currently learning programming languages like Python, C, and C++. I have a deep interest in
+                    cybersecurity and networking,
+                    with a focus on ethical hacking and network security. I enjoy tackling complex challenges and
+                    continuously push myself to master
+                    new technologies.
+                </p>
+            </div>
+            <!-- Right Column: Profile Picture -->
+            <div class="md:w-1/2 flex justify-center mt-4 md:mt-0 profile">
+                <img src="profile.png" alt="Profile Picture" class="w-64 h-64 object-cover rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Links Section -->
+    <section id="links" class="p-10 flex flex-col justify-center items-center space-y-4">
+        <div class="flex flex-col md:flex-row justify-around items-center space-y-6 md:space-y-0 w-full max-w-3xl">
+            <!-- About Me Link -->
+            <a href="about.htm" class="flex flex-col items-center text-white hover:text-yellow-400">
+                <i class="fas fa-user fa-2x"></i>
+                <span class="mt-2">About Me</span>
+            </a>
+            <!-- Education Link -->
+            <a href="education.htm" class="flex flex-col items-center text-white hover:text-yellow-400">
+                <i class="fas fa-graduation-cap fa-2x"></i>
+                <span class="mt-2">Education</span>
+            </a>
+            <!-- Thoughts Link -->
+            <a href="thought.htm" class="flex flex-col items-center text-white hover:text-yellow-400">
+                <i class="fas fa-brain fa-2x"></i>
+                <span class="mt-2">Thoughts</span>
+            </a>
+        </div>
+
+        <!-- Contact Link Positioned at the Bottom -->
+        <div id="contact-link">
+            <a href="contact.htm">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- ScrollReveal Animation -->
+    <script>
+        // Animate header and links section from bottom
+        ScrollReveal().reveal('header, #links, section', {
+            duration: 1000,
+            origin: 'bottom',
+            distance: '50px',
+            reset: true
+        });
+        // Animate "About Me" text from the left
+        ScrollReveal().reveal('#about .description', {
+            duration: 1000,
+            origin: 'left',
+            distance: '50px',
+            reset: true
+        });
+        // Animate "About Me" image from the right
+        ScrollReveal().reveal('#about .profile', {
+            duration: 1000,
+            origin: 'right',
+            distance: '50px',
+            reset: true
+        });
+    </script>
+
+    <!-- BELOW DOWN CODE FOR MOVING ONE PAGE TO ANOTHER -->
+    <script>
+        // Handle "Next" button behavior to redirect to last visited page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Store the last visited page
+            sessionStorage.setItem('lastVisitedPage', window.location.href);
+
+            // Redirect to last visited page when "Next" button is used
+            window.addEventListener('pageshow', (event) => {
+                const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+                if (event.persisted && lastVisitedPage && lastVisitedPage !== window.location.href) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        });
+    </script>
+    <script>
+        function handleHomePage() {
+            // Set the homepage as the "starting point" in history
+            history.replaceState(null, null, 'index.htm');
+
+            // Redirect to last visited subpage when "Next" is pressed
+            const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted && lastVisitedPage) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        }
+
+        // Call the function
+        handleHomePage();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Tailwind CSS (optional, for convenience) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            scroll-behavior: smooth;
+            background-color: #2B003D;
+            color: white;
+        }
+
+        /* Keyframe Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.7);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-180deg) scale(0.5);
+            }
+
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+
+        /* --- Top Section (Quote & Sentences) --- */
+        #quote {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+        }
+
+        #quote.active {
+            animation: scaleIn 0.8s ease forwards;
+        }
+
+        #quote blockquote {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        #quote p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+
+        #sentences {
+            min-height: 10vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 300px;
+            opacity: 0;
+        }
+
+        /* Changed transition style for sentences section to fadeInUp */
+        #sentences.active {
+            animation: fadeInUp 0.99s ease forwards;
+        }
+
+        /* --- Timeline Container (Normal Flow) --- */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        /* The header "Education Journey" */
+        #timeline-header {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+            opacity: 0;
+        }
+
+        #timeline-header.active {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* The vertical line is drawn with a pseudo‑element on the timeline container */
+        .timeline-container::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 100px;
+            height: calc(100% - 600px);
+            width: 4px;
+            background: white;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* --- Institute Sections --- */
+        .institute-section {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .institute-content {
+            position: relative;
+            background: #2B003D;
+            padding: 10px 15px;
+            opacity: 0;
+        }
+
+        /* Alternate left and right animations for institute sections */
+        #institute1 .institute-content.active {
+            animation: slideInLeft 0.99s ease forwards;
+        }
+
+        #institute2 .institute-content.active {
+            animation: slideInRight 0.99s ease forwards;
+        }
+
+        #institute3 .institute-content.active {
+            animation: slideInLeft 0.99s ease forwards;
+        }
+
+        #institute4 .institute-content.active {
+            animation: slideInRight 0.99s ease forwards;
+        }
+
+        .institute-name {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .institute-description {
+            margin: 5px 0 0;
+            font-size: 1rem;
+        }
+
+        /* Contact Me Section */
+        #contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 0;
+            opacity: 0;
+        }
+
+        #contact-section.active {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        #contact-button {
+            background-color: #1E1E1E;
+            border: none;
+            color: #FFD700;
+            padding: 14px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Section: Quote & Sentences -->
+    <section id="quote">
+        <blockquote>
+            "Education's purpose is to replace an empty mind with an open one."
+        </blockquote>
+        <p>- Malcolm Forbes</p>
+    </section>
+    <section id="sentences">
+        <p>
+            Don't Know if it really replaces empty mind with an open one, But Artificial Intelligence will replace some
+            Tech guy!
+        </p>
+    </section>
+
+    <!-- Timeline Container with Header and Vertical Line -->
+    <div class="timeline-container">
+        <div id="timeline-header">Education Journey</div>
+
+        <!-- Institute Sections -->
+        <section class="institute-section" id="institute1">
+            <div class="institute-content">
+                <h2 class="institute-name">Shernagar A.S. Fazil Madrasah,Sirajanj</h2>
+                <p class="institute-description">From Class 3 to 8</p>
+            </div>
+        </section>
+        <section class="institute-section" id="institute2">
+            <div class="institute-content">
+                <h2 class="institute-name">Shohagpur Nutunpara A.S. High School,Sirajganj</h2>
+                <p class="institute-description">SSC 2021</p>
+            </div>
+        </section>
+        <section class="institute-section" id="institute3">
+            <div class="institute-content">
+                <h2 class="institute-name">
+                    <a href="https://akmcc.edu.bd/#/home">Abdul kadir Molla City College, Narshingdi</a>
+                </h2>
+                <p class="institute-description">HSC 2023</p>
+            </div>
+        </section>
+        <section class="institute-section" id="institute4">
+            <div class="institute-content">
+                <h2 class="institute-name">
+                    <a href="https://iu.ac.bd/">Islamic University,Bangladesh</a>
+                </h2>
+                <p class="institute-description">
+                    Currently studying at the department of Computer Science And Engineering
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Me Section -->
+    <section id="contact-section">
+        <div id="contact-button">
+            <a href="contact.htm">Contact Me</a>
+        </div>
+    </section>
+
+    <script>
+        // IntersectionObserver to animate sections when they come into view
+        const sectionsToAnimate = [
+            ...document.querySelectorAll('.institute-content'),
+            document.getElementById('quote'),
+            document.getElementById('sentences'),
+            document.getElementById('timeline-header'),
+            document.getElementById('contact-section')
+        ];
+
+        const options = { threshold: 0.1 };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, options);
+
+        sectionsToAnimate.forEach((section) => {
+            observer.observe(section);
+        });
+    </script>
+    <!-- BELOW DOWN CODE FOR MOVING ONE PAGE TO ANOTHER -->
+    <script>
+        // Handle "Next" button behavior to redirect to last visited page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Store the last visited page
+            sessionStorage.setItem('lastVisitedPage', window.location.href);
+
+            // Redirect to last visited page when "Next" button is used
+            window.addEventListener('pageshow', (event) => {
+                const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+                if (event.persisted && lastVisitedPage && lastVisitedPage !== window.location.href) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        });
+    </script>
+    <script>
+        function handleHomePage() {
+            // Set the homepage as the "starting point" in history
+            history.replaceState(null, null, 'index.htm');
+
+            // Redirect to last visited subpage when "Next" is pressed
+            const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted && lastVisitedPage) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        }
+
+        // Call the function
+        handleHomePage();
+    </script>
+</body>
+
+</html>

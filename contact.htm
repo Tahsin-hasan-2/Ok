@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a40;
+            /* Dark blue background */
+            color: white;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            /* Ensures full-page height */
+        }
+
+        .email-icon {
+            position: absolute;
+            opacity: 0.1;
+            font-size: 100px;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* Icon positions */
+        .icon1 {
+            top: 10%;
+            left: 20%;
+        }
+
+        .icon2 {
+            top: 40%;
+            left: 70%;
+        }
+
+        .icon3 {
+            top: 70%;
+            left: 30%;
+        }
+
+        .icon-gmail {
+            top: 25%;
+            left: 50%;
+        }
+
+        .icon-yahoo {
+            top: 50%;
+            left: 15%;
+        }
+
+        .icon4 {
+            bottom: 5%;
+            left: 40%;
+        }
+
+        .icon5 {
+            bottom: 5%;
+            left: 70%;
+        }
+
+        .icon6 {
+            bottom: 5%;
+            left: 10%;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #2d2d5e;
+            /* New dark color for the container */
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            color: white;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #fdfcfc;
+            border-radius: 4px;
+            background-color: #2a2a4a;
+            color: rgb(148, 80, 80);
+            box-sizing: border-box;
+            /* Ensures padding is included in width */
+        }
+
+
+        textarea {
+            height: 120px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background icons -->
+    <span class="email-icon icon1">✉️</span>
+    <span class="email-icon icon2">📧</span>
+    <span class="email-icon icon3">📨</span>
+    <span class="email-icon icon-gmail">Gmail</span> <!-- Gmail Icon -->
+    <span class="email-icon icon-yahoo">Yahoo</span> <!-- Yahoo Icon -->
+    <span class="email-icon icon4">📤</span> <!-- Icon at the bottom -->
+    <span class="email-icon icon5">📥</span> <!-- Icon at the bottom -->
+    <span class="email-icon icon6">📬</span> <!-- Icon at the bottom -->
+
+    <div class="container">
+        <h1>Contact Us</h1>
+        <!-- Netlify form -->
+        <form name="contact" method="POST" data-netlify="true">
+            <p>
+                <label>Name <input type="text" name="name" required /></label>
+            </p>
+            <p>
+                <label>Email <input type="email" name="email" required /></label>
+            </p>
+            <p>
+                <label>Message <textarea name="message" required></textarea></label>
+            </p>
+            <p>
+                <button type="submit">Send</button>
+            </p>
+        </form>
+    </div>
+    <!-- BELOW DOWN CODE FOR MOVING ONE PAGE TO ANOTHER -->
+    <script>
+        // Handle "Next" button behavior to redirect to last visited page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Store the last visited page
+            sessionStorage.setItem('lastVisitedPage', window.location.href);
+
+            // Redirect to last visited page when "Next" button is used
+            window.addEventListener('pageshow', (event) => {
+                const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+                if (event.persisted && lastVisitedPage && lastVisitedPage !== window.location.href) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        });
+    </script>
+    <script>
+        function handleHomePage() {
+            // Set the homepage as the "starting point" in history
+            history.replaceState(null, null, 'index.htm');
+
+            // Redirect to last visited subpage when "Next" is pressed
+            const lastVisitedPage = sessionStorage.getItem('lastVisitedPage');
+            window.addEventListener('pageshow', (event) => {
+                if (event.persisted && lastVisitedPage) {
+                    window.location.href = lastVisitedPage;
+                }
+            });
+        }
+
+        // Call the function
+        handleHomePage();
+    </script>
+</body>
+
+</html>
